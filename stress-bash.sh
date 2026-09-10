@@ -1,0 +1,1 @@
+while true; do curl -s http://localhost:8080/stress > /dev/null; done

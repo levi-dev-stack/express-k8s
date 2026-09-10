@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: express-api
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: express-api
+
+  template:
+    metadata:
+      labels:
+        app: express-api
+
+    spec:
+      containers:
+        - name: express-api
+          image: backend-express-app:1.7
+          imagePullPolicy: IfNotPresent
+
+          envFrom:
+            - configMapRef:
+                name: express-config
+
+            - secretRef:
+                name: express-secret
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
