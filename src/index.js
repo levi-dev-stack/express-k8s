@@ -84,6 +84,10 @@ app.get('/exit', () => {
   process.exit(1);
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ success: true, message: "API is healthy", time: new Date().toLocaleString() })
+});
+
 app.get('/stress', (req, res) => {
   console.log("Generating stress..");
 
